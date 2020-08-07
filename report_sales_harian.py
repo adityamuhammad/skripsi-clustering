@@ -39,16 +39,16 @@ creds = ServiceAccountCredentials.from_json_keyfile_name('credentials.json', sco
 client = gspread.authorize(creds)
 sheet = client.open("Report Striker GO").worksheet("Form Responses 1")
 
-date = datetime.now().strftime("%m/%d/%Y").split('/')
-today = ""
-for i in range(len(date)):
-    if i == 0:
-        today += date[i].lstrip("0")
-    else:
-        today += "/{}".format(date[i].lstrip('0'))
+#date = datetime.now().strftime("%m/%d/%Y").split('/')
+#today = ""
+#for i in range(len(date)):
+#    if i == 0:
+#        today += date[i].lstrip("0")
+#    else:
+#        today += "/{}".format(date[i].lstrip('0'))
 
 # today = "1/22/2019"
-
+today = datetime.now().strftime("%#m/%#d/%#Y)
 records_per_today = sheet.findall(today)
 tanggal = datetime.now().strftime("%Y-%m-%d")
 
@@ -77,10 +77,7 @@ for records in records_per_today:
 
 
 collect_data = []
-bjm = []
-bjb = []
-blc = []
-tjg = []
+bjm, bjb, blc, tjg = [], [], [], []
 for data in distinct_data:
     for each in data:
         if sys.argv[1] == "siang":
